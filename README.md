@@ -1,34 +1,119 @@
-### 产品需求文档 (PRD) - 概念版
+# Shadcn Admin Dashboard
 
-如果您想开发一款类似的 App，这份文档可以作为基础框架。
+Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and accessibility in mind.
 
-#### 1. 项目背景 (Background)
-*   **目标：** 创建一个基于地理位置的社区平台，帮助用户发现城市中的公共猫咪（店猫/社区猫），并记录猫咪的健康与生活状态。
-*   **核心价值：** 娱乐（吸猫）、社区（爱猫人交流）、公益（关注流浪猫/店猫生存状况）。
+![alt text](public/images/shadcn-admin.png)
 
-#### 2. 用户画像 (User Personas)
-*   **探险者 (The Explorer)：** 喜欢城市漫步 (City Walk)，想知道哪里有猫可以看。
-*   **贡献者 (The Contributor)：** 经常喂猫或路过店铺，乐于上传照片和更新猫咪状态。
-*   **店主 (The Shop Owner)：** (潜在用户) 希望通过猫咪吸引顾客，或者希望声明“请勿投喂”。
+[![Sponsored by Clerk](https://img.shields.io/badge/Sponsored%20by-Clerk-5b6ee1?logo=clerk)](https://go.clerk.com/GttUAaK)
 
-#### 3. 功能需求 (Functional Requirements)
+I've been creating dashboard UIs at work and for my personal projects. I always wanted to make a reusable collection of dashboard UI for future projects; and here it is now. While I've created a few custom components, some of the code is directly adapted from ShadcnUI examples.
 
-| 模块 | 功能点 | 详细描述 | 优先级 |
-| :--- | :--- | :--- | :--- |
-| **地图主页** | 附近猫咪 | 基于用户 GPS 显示方圆 2km 内的猫咪标记 (Pin)。 | P0 |
-| | 筛选器 | 可按“店猫”、“社区猫”、“亲人程度”进行筛选。 | P1 |
-| | 导航 | 调起 Google Maps/Apple Maps 进行导航。 | P0 |
-| **猫咪档案** | 基本信息 | 名字、品种、照片、常驻地点、性格标签（如：可摸/不可摸）。 | P0 |
-| | 状态更新 | 用户可标记：今日已见、猫咪生病、猫咪搬家。 | P1 |
-| | 众包编辑 | 用户可提交新猫咪信息，需后台或高等级用户审核。 | P1 |
-| **互动社交** | 打卡签到 | 用户在猫咪范围内可点击“吸猫”，增加经验值。 | P1 |
-| | 动态墙 | 类似 Instagram 的照片流，显示最新上传的猫片。 | P2 |
-| | 评论区 | 针对每只猫的讨论（例：“今天去它在睡觉”）。 | P2 |
-| **个人中心** | 足迹地图 | 点亮去过的区域，生成“吸猫成就报告”。 | P2 |
-| | 勋章系统 | 根据贡献度获得“铲屎官”、“猫咪星探”等勋章。 | P2 |
+> This is not a starter project (template) though. I'll probably make one in the future.
 
-#### 4. 非功能需求 (Non-functional Requirements)
-*   **隐私与安全（重中之重）：**
-    *   **模糊处理：** 对于非店铺的社区流浪猫，位置坐标应随机偏移 50-100 米，防止虐猫者精确定位。
-    *   **审核机制：** 所有上传的照片和新建地点必须经过 AI 鉴黄 + 人工/社区审核。
-*   **性能：** 地图加载需流畅，图片需进行压缩处理以节省流量。
+## Features
+
+- Light/dark mode
+- Responsive
+- Accessible
+- With built-in Sidebar component
+- Global search command
+- 10+ pages
+- Extra custom components
+- RTL support
+
+<details>
+<summary>Customized Components (click to expand)</summary>
+
+This project uses Shadcn UI components, but some have been slightly modified for better RTL (Right-to-Left) support and other improvements. These customized components differ from the original Shadcn UI versions.
+
+If you want to update components using the Shadcn CLI (e.g., `npx shadcn@latest add <component>`), it's generally safe for non-customized components. For the listed customized ones, you may need to manually merge changes to preserve the project's modifications and avoid overwriting RTL support or other updates.
+
+> If you don't require RTL support, you can safely update the 'RTL Updated Components' via the Shadcn CLI, as these changes are primarily for RTL compatibility. The 'Modified Components' may have other customizations to consider.
+
+### Modified Components
+
+- scroll-area
+- sonner
+- separator
+
+### RTL Updated Components
+
+- alert-dialog
+- calendar
+- command
+- dialog
+- dropdown-menu
+- select
+- table
+- sheet
+- sidebar
+- switch
+
+**Notes:**
+
+- **Modified Components**: These have general updates, potentially including RTL adjustments.
+- **RTL Updated Components**: These have specific changes for RTL language support (e.g., layout, positioning).
+- For implementation details, check the source files in `src/components/ui/`.
+- All other Shadcn UI components in the project are standard and can be safely updated via the CLI.
+
+</details>
+
+## Tech Stack
+
+**UI:** [ShadcnUI](https://ui.shadcn.com) (TailwindCSS + RadixUI)
+
+**Build Tool:** [Vite](https://vitejs.dev/)
+
+**Routing:** [TanStack Router](https://tanstack.com/router/latest)
+
+**Type Checking:** [TypeScript](https://www.typescriptlang.org/)
+
+**Linting/Formatting:** [ESLint](https://eslint.org/) & [Prettier](https://prettier.io/)
+
+**Icons:** [Lucide Icons](https://lucide.dev/icons/), [Tabler Icons](https://tabler.io/icons) (Brand icons only)
+
+**Auth (partial):** [Clerk](https://go.clerk.com/GttUAaK)
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/satnaing/shadcn-admin.git
+```
+
+Go to the project directory
+
+```bash
+  cd shadcn-admin
+```
+
+Install dependencies
+
+```bash
+  pnpm install
+```
+
+Start the server
+
+```bash
+  pnpm run dev
+```
+
+## Sponsoring this project ❤️
+
+If you find this project helpful or use this in your own work, consider [sponsoring me](https://github.com/sponsors/satnaing) to support development and maintenance. You can [buy me a coffee](https://buymeacoffee.com/satnaing) as well. Don’t worry, every penny helps. Thank you! 🙏
+
+For questions or sponsorship inquiries, feel free to reach out at [satnaingdev@gmail.com](mailto:satnaingdev@gmail.com).
+
+### Current Sponsor
+
+- [Clerk](https://go.clerk.com/GttUAaK) - authentication and user management for the modern web
+
+## Author
+
+Crafted with 🤍 by [@satnaing](https://github.com/satnaing)
+
+## License
+
+Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)

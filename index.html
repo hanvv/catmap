@@ -1,53 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>Catmap - City Cat Journal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Varela+Round&display=swap" rel="stylesheet">
-    <style>
-      /* Custom scrollbar hiding for clean UI */
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      body {
-        background-color: #f0f0f0;
-        font-family: 'Nunito', sans-serif;
-        /* Prevent bounce on mobile */
-        overscroll-behavior: none;
-      }
-      .font-rounded {
-        font-family: 'Varela Round', sans-serif;
-      }
-      /* Soft shadow utility */
-      .shadow-soft-orange {
-        box-shadow: 0 10px 25px -5px rgba(255, 159, 67, 0.25), 0 8px 10px -6px rgba(255, 159, 67, 0.1);
-      }
-      .shadow-float {
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/images/favicon.svg"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/images/favicon_light.svg"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/favicon.png"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/favicon_light.png"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>Shadcn Admin</title>
+    <meta name="title" content="Shadcn Admin" />
+    <meta
+      name="description"
+      content="Admin Dashboard UI built with Shadcn and Vite."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shadcn-admin.netlify.app" />
+    <meta property="og:title" content="Shadcn Admin" />
+    <meta
+      property="og:description"
+      content="Admin Dashboard UI built with Shadcn and Vite."
+    />
+    <meta
+      property="og:image"
+      content="https://shadcn-admin.netlify.app/images/shadcn-admin.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://shadcn-admin.netlify.app" />
+    <meta property="twitter:title" content="Shadcn Admin" />
+    <meta
+      property="twitter:description"
+      content="Admin Dashboard UI built with Shadcn and Vite."
+    />
+    <meta
+      property="twitter:image"
+      content="https://shadcn-admin.netlify.app/images/shadcn-admin.png"
+    />
+
+    <!-- font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="theme-color" content="#fff" />
+  </head>
+
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

@@ -1,7 +1,0 @@
-{
-  "name": "Catmap",
-  "description": "A heartwarming, interactive urban cat journal and map designed like a picture book.",
-  "requestFramePermissions": [
-    "geolocation"
-  ]
-}
