@@ -26,9 +26,14 @@ import { Route as ClerkAuthenticatedRouteRouteImport } from './routes/clerk/_aut
 import { Route as ClerkauthRouteRouteImport } from './routes/clerk/(auth)/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
+import { Route as AuthenticatedUser_statsIndexRouteImport } from './routes/_authenticated/user_stats/index'
+import { Route as AuthenticatedUser_badgesIndexRouteImport } from './routes/_authenticated/user_badges/index'
+import { Route as AuthenticatedUserIndexRouteImport } from './routes/_authenticated/user/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
+import { Route as AuthenticatedDiscovery_photosIndexRouteImport } from './routes/_authenticated/discovery_photos/index'
+import { Route as AuthenticatedDiscoveriesIndexRouteImport } from './routes/_authenticated/discoveries/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as AuthenticatedCatsIndexRouteImport } from './routes/_authenticated/cats/index'
 import { Route as AuthenticatedCat_likesIndexRouteImport } from './routes/_authenticated/cat_likes/index'
@@ -126,6 +131,23 @@ const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedUser_statsIndexRoute =
+  AuthenticatedUser_statsIndexRouteImport.update({
+    id: '/user_stats/',
+    path: '/user_stats/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUser_badgesIndexRoute =
+  AuthenticatedUser_badgesIndexRouteImport.update({
+    id: '/user_badges/',
+    path: '/user_badges/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUserIndexRoute = AuthenticatedUserIndexRouteImport.update({
+  id: '/user/',
+  path: '/user/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedTasksIndexRoute = AuthenticatedTasksIndexRouteImport.update({
   id: '/tasks/',
   path: '/tasks/',
@@ -141,6 +163,18 @@ const AuthenticatedHelpCenterIndexRoute =
   AuthenticatedHelpCenterIndexRouteImport.update({
     id: '/help-center/',
     path: '/help-center/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDiscovery_photosIndexRoute =
+  AuthenticatedDiscovery_photosIndexRouteImport.update({
+    id: '/discovery_photos/',
+    path: '/discovery_photos/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDiscoveriesIndexRoute =
+  AuthenticatedDiscoveriesIndexRouteImport.update({
+    id: '/discoveries/',
+    path: '/discoveries/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedChatsIndexRoute = AuthenticatedChatsIndexRouteImport.update({
@@ -244,9 +278,14 @@ export interface FileRoutesByFullPath {
   '/cat_likes': typeof AuthenticatedCat_likesIndexRoute
   '/cats': typeof AuthenticatedCatsIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
+  '/discoveries': typeof AuthenticatedDiscoveriesIndexRoute
+  '/discovery_photos': typeof AuthenticatedDiscovery_photosIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
+  '/user': typeof AuthenticatedUserIndexRoute
+  '/user_badges': typeof AuthenticatedUser_badgesIndexRoute
+  '/user_stats': typeof AuthenticatedUser_statsIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRoutesByTo {
@@ -275,9 +314,14 @@ export interface FileRoutesByTo {
   '/cat_likes': typeof AuthenticatedCat_likesIndexRoute
   '/cats': typeof AuthenticatedCatsIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
+  '/discoveries': typeof AuthenticatedDiscoveriesIndexRoute
+  '/discovery_photos': typeof AuthenticatedDiscovery_photosIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
+  '/user': typeof AuthenticatedUserIndexRoute
+  '/user_badges': typeof AuthenticatedUser_badgesIndexRoute
+  '/user_stats': typeof AuthenticatedUser_statsIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRoutesById {
@@ -311,9 +355,14 @@ export interface FileRoutesById {
   '/_authenticated/cat_likes/': typeof AuthenticatedCat_likesIndexRoute
   '/_authenticated/cats/': typeof AuthenticatedCatsIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
+  '/_authenticated/discoveries/': typeof AuthenticatedDiscoveriesIndexRoute
+  '/_authenticated/discovery_photos/': typeof AuthenticatedDiscovery_photosIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
+  '/_authenticated/user/': typeof AuthenticatedUserIndexRoute
+  '/_authenticated/user_badges/': typeof AuthenticatedUser_badgesIndexRoute
+  '/_authenticated/user_stats/': typeof AuthenticatedUser_statsIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRouteTypes {
@@ -345,9 +394,14 @@ export interface FileRouteTypes {
     | '/cat_likes'
     | '/cats'
     | '/chats'
+    | '/discoveries'
+    | '/discovery_photos'
     | '/help-center'
     | '/settings/'
     | '/tasks'
+    | '/user'
+    | '/user_badges'
+    | '/user_stats'
     | '/users'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -376,9 +430,14 @@ export interface FileRouteTypes {
     | '/cat_likes'
     | '/cats'
     | '/chats'
+    | '/discoveries'
+    | '/discovery_photos'
     | '/help-center'
     | '/settings'
     | '/tasks'
+    | '/user'
+    | '/user_badges'
+    | '/user_stats'
     | '/users'
   id:
     | '__root__'
@@ -411,9 +470,14 @@ export interface FileRouteTypes {
     | '/_authenticated/cat_likes/'
     | '/_authenticated/cats/'
     | '/_authenticated/chats/'
+    | '/_authenticated/discoveries/'
+    | '/_authenticated/discovery_photos/'
     | '/_authenticated/help-center/'
     | '/_authenticated/settings/'
     | '/_authenticated/tasks/'
+    | '/_authenticated/user/'
+    | '/_authenticated/user_badges/'
+    | '/_authenticated/user_stats/'
     | '/_authenticated/users/'
   fileRoutesById: FileRoutesById
 }
@@ -553,6 +617,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUsersIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/user_stats/': {
+      id: '/_authenticated/user_stats/'
+      path: '/user_stats'
+      fullPath: '/user_stats'
+      preLoaderRoute: typeof AuthenticatedUser_statsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user_badges/': {
+      id: '/_authenticated/user_badges/'
+      path: '/user_badges'
+      fullPath: '/user_badges'
+      preLoaderRoute: typeof AuthenticatedUser_badgesIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/user/': {
+      id: '/_authenticated/user/'
+      path: '/user'
+      fullPath: '/user'
+      preLoaderRoute: typeof AuthenticatedUserIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/tasks/': {
       id: '/_authenticated/tasks/'
       path: '/tasks'
@@ -572,6 +657,20 @@ declare module '@tanstack/react-router' {
       path: '/help-center'
       fullPath: '/help-center'
       preLoaderRoute: typeof AuthenticatedHelpCenterIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/discovery_photos/': {
+      id: '/_authenticated/discovery_photos/'
+      path: '/discovery_photos'
+      fullPath: '/discovery_photos'
+      preLoaderRoute: typeof AuthenticatedDiscovery_photosIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/discoveries/': {
+      id: '/_authenticated/discoveries/'
+      path: '/discoveries'
+      fullPath: '/discoveries'
+      preLoaderRoute: typeof AuthenticatedDiscoveriesIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/chats/': {
@@ -700,8 +799,13 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCat_likesIndexRoute: typeof AuthenticatedCat_likesIndexRoute
   AuthenticatedCatsIndexRoute: typeof AuthenticatedCatsIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
+  AuthenticatedDiscoveriesIndexRoute: typeof AuthenticatedDiscoveriesIndexRoute
+  AuthenticatedDiscovery_photosIndexRoute: typeof AuthenticatedDiscovery_photosIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
+  AuthenticatedUserIndexRoute: typeof AuthenticatedUserIndexRoute
+  AuthenticatedUser_badgesIndexRoute: typeof AuthenticatedUser_badgesIndexRoute
+  AuthenticatedUser_statsIndexRoute: typeof AuthenticatedUser_statsIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
 }
 
@@ -714,8 +818,14 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCat_likesIndexRoute: AuthenticatedCat_likesIndexRoute,
   AuthenticatedCatsIndexRoute: AuthenticatedCatsIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
+  AuthenticatedDiscoveriesIndexRoute: AuthenticatedDiscoveriesIndexRoute,
+  AuthenticatedDiscovery_photosIndexRoute:
+    AuthenticatedDiscovery_photosIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
+  AuthenticatedUserIndexRoute: AuthenticatedUserIndexRoute,
+  AuthenticatedUser_badgesIndexRoute: AuthenticatedUser_badgesIndexRoute,
+  AuthenticatedUser_statsIndexRoute: AuthenticatedUser_statsIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
 }
 

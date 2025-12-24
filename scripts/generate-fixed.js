@@ -31,7 +31,7 @@ const DB_CONFIG = {
 // ⚠️ 注意：表名必须是字符串数组，每个表名单独一个字符串
 // ✅ 正确：['products', 'categories', 'orders']
 // ❌ 错误：['products, categories, orders']
-const TABLE_NAMES = ['cats', 'cat_badges', 'cat_likes'] // 改为你的表名
+const TABLE_NAMES = ['cats', 'cat_badges', 'cat_likes', 'discoveries', 'discovery_photos', 'user_badges', 'user_stats', 'user'] // 改为你的表名
 
 // ==================== 工具函数 ====================
 
@@ -134,7 +134,7 @@ export const ${toCamelCase(typeName)}ListSchema = z.array(${toCamelCase(typeName
  */
 function generateColumns(columns, featureName) {
   const typeName = toPascalCase(featureName.replace(/s$/, ''))
-  
+
   const displayFields = columns
     .filter(col => !['created_at', 'updated_at', 'deleted'].includes(col.columnName.toLowerCase()))
     .slice(0, 5)
@@ -143,7 +143,7 @@ function generateColumns(columns, featureName) {
     const fieldName = toCamelCase(col.columnName)
     // 优先使用字段注释，否则使用格式化的字段名
     const label = col.columnComment || toTitle(col.columnName)
-    
+
     return `  {
     accessorKey: '${fieldName}',
     header: ({ column }) => (
@@ -457,45 +457,45 @@ export const Route = createFileRoute('/_authenticated/${featureName}/')({
 
 async function generateForTable(connection, tableName) {
   const featureName = tableName
-  
+
   console.log(`\n📊 处理表: ${tableName}`)
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-  
+
   try {
     const columns = await getTableStructure(connection, tableName)
-    
+
     if (columns.length === 0) {
       console.log(`⚠️  表 ${tableName} 不存在或没有列，跳过`)
       console.log(`   提示: 检查表名拼写是否正确`)
       return { success: false, tableName, error: '表不存在或无列' }
     }
 
-  console.log(`✅ 找到 ${columns.length} 个字段`)
-  
-  // 显示字段注释
-  const fieldsWithComments = columns.filter(col => col.columnComment)
-  if (fieldsWithComments.length > 0) {
-    console.log(`📝 发现 ${fieldsWithComments.length} 个字段有注释，将用作表单标签`)
-  }
+    console.log(`✅ 找到 ${columns.length} 个字段`)
 
-  // 创建目录结构
-  const featurePath = path.join(__dirname, '..', 'src', 'features', featureName)
-  const routePath = path.join(__dirname, '..', 'src', 'routes', '_authenticated', featureName)
-  
-  await fs.mkdir(path.join(featurePath, 'data'), { recursive: true })
-  await fs.mkdir(path.join(featurePath, 'components'), { recursive: true })
-  await fs.mkdir(routePath, { recursive: true })
+    // 显示字段注释
+    const fieldsWithComments = columns.filter(col => col.columnComment)
+    if (fieldsWithComments.length > 0) {
+      console.log(`📝 发现 ${fieldsWithComments.length} 个字段有注释，将用作表单标签`)
+    }
 
-  // 生成文件
-  const files = [
-    { path: path.join(featurePath, 'data', 'schema.ts'), content: generateSchema(columns, featureName, tableName), name: 'Schema' },
-    { path: path.join(featurePath, 'data', 'data.ts'), content: generateDataConstants(featureName), name: 'Constants' },
-    { path: path.join(featurePath, 'components', `${toKebabCase(featureName)}-columns.tsx`), content: generateColumns(columns, featureName), name: 'Columns' },
-    { path: path.join(featurePath, 'components', `${toKebabCase(featureName)}-table.tsx`), content: generateTable(featureName), name: 'Table' },
-    { path: path.join(featurePath, 'components', 'data-table-row-actions.tsx'), content: generateRowActions(featureName), name: 'Row Actions' },
-    { path: path.join(featurePath, 'index.tsx'), content: generateMainComponent(featureName), name: 'Main' },
-    { path: path.join(routePath, 'index.tsx'), content: generateRoute(featureName), name: 'Route' },
-  ]
+    // 创建目录结构
+    const featurePath = path.join(__dirname, '..', 'src', 'features', featureName)
+    const routePath = path.join(__dirname, '..', 'src', 'routes', '_authenticated', featureName)
+
+    await fs.mkdir(path.join(featurePath, 'data'), { recursive: true })
+    await fs.mkdir(path.join(featurePath, 'components'), { recursive: true })
+    await fs.mkdir(routePath, { recursive: true })
+
+    // 生成文件
+    const files = [
+      { path: path.join(featurePath, 'data', 'schema.ts'), content: generateSchema(columns, featureName, tableName), name: 'Schema' },
+      { path: path.join(featurePath, 'data', 'data.ts'), content: generateDataConstants(featureName), name: 'Constants' },
+      { path: path.join(featurePath, 'components', `${toKebabCase(featureName)}-columns.tsx`), content: generateColumns(columns, featureName), name: 'Columns' },
+      { path: path.join(featurePath, 'components', `${toKebabCase(featureName)}-table.tsx`), content: generateTable(featureName), name: 'Table' },
+      { path: path.join(featurePath, 'components', 'data-table-row-actions.tsx'), content: generateRowActions(featureName), name: 'Row Actions' },
+      { path: path.join(featurePath, 'index.tsx'), content: generateMainComponent(featureName), name: 'Main' },
+      { path: path.join(routePath, 'index.tsx'), content: generateRoute(featureName), name: 'Route' },
+    ]
 
     for (const file of files) {
       await fs.writeFile(file.path, file.content, 'utf-8')
@@ -575,15 +575,15 @@ async function main() {
     console.log('\n' + '='.repeat(60))
     console.log('📊 生成统计')
     console.log('='.repeat(60))
-    
+
     const successful = results.filter(r => r.success)
     const failed = results.filter(r => !r.success)
-    
+
     console.log(`\n✅ 成功: ${successful.length} 个表`)
     successful.forEach(r => {
       console.log(`   - ${r.tableName} (${r.filesGenerated} 个文件)`)
     })
-    
+
     if (failed.length > 0) {
       console.log(`\n❌ 失败: ${failed.length} 个表`)
       failed.forEach(r => {

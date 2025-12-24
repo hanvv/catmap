@@ -23,6 +23,7 @@ import {
   GalleryVerticalEnd,
   Cat,
   Award,
+  Rss,
 } from 'lucide-react'
 import { ClerkLogo } from '@/assets/clerk-logo'
 import { type SidebarData } from '../types'
@@ -89,6 +90,16 @@ export const sidebarData: SidebarData = {
           title: '猫徽章',
           url: '/cat_badges',
           icon: Award,
+        },
+        {
+          title: '发现',
+          url: '/discoveries',
+          icon: Rss,
+        },
+        {
+          title: '用户',
+          url: '/user',
+          icon: Users,
         },
         {
           title: 'Secured by Clerk',
