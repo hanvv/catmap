@@ -73,10 +73,14 @@ export const CatBottomSheet: React.FC<CatBottomSheetProps> = ({ cat, onClose, on
 
         {/* Action Bar */}
         <View className="mt-8 flex items-center gap-3">
-          <Button className="flex-1 bg-[#FF9F43] text-white font-bold py-3.5 rounded-2xl shadow-soft-orange active:scale-95 transition-transform flex items-center justify-center gap-2">
-            <Navigation size={20} fill="currentColor" />
-            <Text>Take me there</Text>
-          </Button>
+          <View
+            className="flex-1 bg-[#FF9F43] py-3.5 rounded-2xl flex items-center justify-center gap-2"
+            style={{ boxShadow: '0 4px 12px rgba(255, 159, 67, 0.3)' }}
+            onClick={() => onViewProfile(cat)}
+          >
+            <Text className="text-xl">🧭</Text>
+            <Text className="text-white font-bold">Take me there</Text>
+          </View>
 
           <View
             className={`w-14 h-14 rounded-2xl flex items-center justify-center border-2 transition-all ${isLiked ? 'bg-red-50 border-red-200 text-red-500' : 'bg-white border-gray-100 text-gray-400'}`}

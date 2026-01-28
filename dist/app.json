@@ -1,1 +1,1 @@
-{"pages":["pages/index/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"Cat Map","navigationBarTextStyle":"black"}}
+{"pages":["pages/index/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"Cat Map","navigationBarTextStyle":"black","navigationStyle":"custom"},"permission":{"scope.userLocation":{"desc":"您的位置信息将用于发现附近的猫咪"}},"requiredPrivateInfos":["getLocation","chooseLocation"]}

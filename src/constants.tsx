@@ -60,3 +60,10 @@ export const COLORS = {
   success: '#2ED573',
   inactive: '#A4B0BE'
 };
+
+// 默认位置（上海田子坊）
+export const DEFAULT_LOCATION = {
+  latitude: 31.2079,
+  longitude: 121.4737,
+  name: '上海田子坊'
+};

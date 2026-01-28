@@ -27,3 +27,16 @@ export interface TabItem {
   icon: React.ReactNode;
   label: string;
 }
+
+// 地理位置相关类型
+export interface GeoPosition {
+  latitude: number;
+  longitude: number;
+}
+
+export interface CatLocation {
+  latitude: number;
+  longitude: number;
+  name: string;
+  address?: string;
+}

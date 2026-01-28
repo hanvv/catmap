@@ -1,7 +1,11 @@
+/**
+ * 底部导航栏组件
+ * 胶囊状设计：白色圆角胶囊 + 中间突出的橙色猫爪按钮
+ */
+
 import React from 'react';
-import { View, Text, Button } from '@tarojs/components'; // Imports from taro
-import { Compass, Book, PawPrint } from 'lucide-react';
-import { TabItem, ViewState } from '../../types';
+import { View, Text } from '@tarojs/components';
+import { ViewState } from '../../types';
 
 interface BottomNavProps {
   currentView: ViewState;
@@ -10,43 +14,87 @@ interface BottomNavProps {
 }
 
 export const BottomNav: React.FC<BottomNavProps> = ({ currentView, onChangeView, onOpenDiscovery }) => {
-  const tabs: TabItem[] = [
-    { id: 'map', icon: <Compass size={24} />, label: 'Explore' },
-    { id: 'journal', icon: <Book size={24} />, label: 'Journal' },
-  ];
-
   return (
-    <View className="absolute bottom-8 left-0 right-0 px-6 z-30 pointer-events-none">
-      <View className="bg-white/95 backdrop-blur-md rounded-full shadow-float h-16 flex items-center justify-between px-2 max-w-[320px] mx-auto pointer-events-auto relative">
-
-        {/* Left Tab */}
+    <View
+      className="absolute left-0 right-0 z-30 flex justify-center"
+      style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)' }}
+    >
+      {/* 胶囊状容器 */}
+      <View
+        className="relative flex items-center bg-white px-4"
+        style={{
+          borderRadius: '40px',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+          height: '64px',
+          minWidth: '280px'
+        }}
+      >
+        {/* 左侧 - Explore */}
         <View
-          className={`flex-1 flex flex-col items-center justify-center gap-1 h-full transition-colors ${currentView === 'map' ? 'text-[#FF9F43]' : 'text-gray-400'}`}
+          className="flex-1 flex flex-col items-center justify-center py-2"
           onClick={() => onChangeView('map')}
         >
-          {tabs[0].icon}
-          <Text className="text-[10px] font-bold">{tabs[0].label}</Text>
+          <View
+            className="w-7 h-7 rounded-full flex items-center justify-center mb-1"
+            style={{
+              border: currentView === 'map' ? '2px solid #FF9F43' : '2px solid transparent'
+            }}
+          >
+            <Text style={{ fontSize: '16px', color: currentView === 'map' ? '#FF9F43' : '#9CA3AF' }}>🧭</Text>
+          </View>
+          <Text
+            style={{
+              fontSize: '11px',
+              color: currentView === 'map' ? '#FF9F43' : '#9CA3AF',
+              fontWeight: currentView === 'map' ? '600' : '400'
+            }}
+          >
+            Explore
+          </Text>
         </View>
 
-        {/* Center Action Button (Floating) */}
-        <View className="relative -top-6 w-16 h-16">
+        {/* 中间 - 猫爪按钮（突出显示） */}
+        <View
+          className="flex items-center justify-center"
+          style={{ marginTop: '-24px' }}
+        >
           <View
-            className="absolute inset-0 bg-[#FF9F43] rounded-full shadow-soft-orange flex items-center justify-center text-white transform transition-transform hover:scale-105 active:scale-95 group"
+            className="rounded-full flex items-center justify-center"
+            style={{
+              width: '60px',
+              height: '60px',
+              backgroundColor: '#FF9F43',
+              boxShadow: '0 4px 15px rgba(255, 159, 67, 0.4)'
+            }}
             onClick={onOpenDiscovery}
           >
-            <PawPrint size={28} fill="currentColor" className="opacity-90 group-hover:rotate-12 transition-transform" />
+            <Text style={{ fontSize: '28px' }}>🐾</Text>
           </View>
         </View>
 
-        {/* Right Tab */}
+        {/* 右侧 - Journal */}
         <View
-          className={`flex-1 flex flex-col items-center justify-center gap-1 h-full transition-colors ${currentView === 'journal' ? 'text-[#FF9F43]' : 'text-gray-400'}`}
+          className="flex-1 flex flex-col items-center justify-center py-2"
           onClick={() => onChangeView('journal')}
         >
-          {tabs[1].icon}
-          <Text className="text-[10px] font-bold">{tabs[1].label}</Text>
+          <View
+            className="w-7 h-7 rounded-full flex items-center justify-center mb-1"
+            style={{
+              border: currentView === 'journal' ? '2px solid #FF9F43' : '2px solid transparent'
+            }}
+          >
+            <Text style={{ fontSize: '16px', color: currentView === 'journal' ? '#FF9F43' : '#9CA3AF' }}>📓</Text>
+          </View>
+          <Text
+            style={{
+              fontSize: '11px',
+              color: currentView === 'journal' ? '#FF9F43' : '#9CA3AF',
+              fontWeight: currentView === 'journal' ? '600' : '400'
+            }}
+          >
+            Journal
+          </Text>
         </View>
-
       </View>
     </View>
   );
